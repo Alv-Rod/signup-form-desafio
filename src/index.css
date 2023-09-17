@@ -1,13 +1,247 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: default;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body {
+    overflow: hidden;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+:root {
+    --bg-darkgrey: #101011;
+    --bg-lightgrey: #1f1f21;
+    --bg-purple: #461a7a;
+    --accent-darkpurple: #2a0e54;
+    --accent-lightpurple: #d2bbff;
+    --accent-darkmediumpurple: #310675;
+    --accent-lightmediumpurple: #ae8dff;
+    --font-color: #cbcbcb;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--bg-darkgrey);
+    color: var(--font-color);
+}
+
+main > div {
+    width: 70%;
+}
+
+.step-heading {
+    display: flex;
+}
+
+.signup-heading, .display-heading {
+    margin: 0 0 1.5rem 3rem;
+    padding: 0.25rem 0;
+    width: fit-content;
+    border-bottom: 2px solid var(--bg-purple);
+    transition: all 0.2s ease-in-out;
+}
+
+.display-heading {
+    margin-left: 2rem;
+    border-bottom: 2px solid transparent;
+}
+
+.signup-heading.display-visible {
+    border-color: transparent;
+}
+
+.display-heading.display-visible {
+    border-color: var(--bg-purple);
+}
+
+
+.main-container {
+    display: flex;
+    border-radius: 10px;
+    /* width: 100%; */
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.main-container.display-visible {
+    background-color: var(--bg-purple);
+}
+
+.signup-container, .display-container {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background-color: var(--bg-lightgrey);
+    padding: 3rem;
+    border-radius: 10px;
+}
+
+
+.display-container {
+    display: none;
+    background-color: var(--bg-purple);
+    transition: all 0.2s ease-in-out;
+}
+
+.display-container.display-visible {
+    display: flex;
+    animation: fadeIn 0.2s ease-in-out;   
+}
+
+.display-container button {
+    margin-top: auto;
+}
+
+.signup-container h1, .display-container h1 {
+    margin-bottom: 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, button {
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 1rem;
+    font-size: 1rem;
+    color: var(--font-color);
+}
+
+input {
+    background-color: var(--bg-darkgrey);
+    margin: 0.5rem 0;
+    cursor: text;
+}
+
+.display-container input {
+    background-color: var(--accent-darkpurple);
+    cursor: default;
+}
+
+button {
+    background: none;
+    cursor: pointer;
+    background-color: var(--bg-purple);
+    margin-top: 1.5rem;
+    transition: all 0.1s ease-in-out;
+}
+
+button#signup-btn:hover {
+    background-color: var(--accent-darkmediumpurple);
+}
+
+button#clear-btn {
+    background-color: var(--accent-lightpurple);
+    color: var(--bg-darkgrey);
+}
+
+button#clear-btn:hover {
+    background-color: var(--accent-lightmediumpurple);
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+.cta-placeholder {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 4rem;
+}
+
+.cta-placeholder.not-visible {
+    display: none;
+}
+
+.cta-placeholder h1 {
+    font-size: 1.75rem;
+}
+
+.error-message {
+    opacity: 55%;
+    font-size: 0.9rem;
+}
+
+@media screen and (max-width: 768px) {
+    main h1 {
+        font-size: 1.2rem;
+    }
+
+    .main-container {
+        justify-content: center;
+    }
+
+    .signup-container, .display-container, .cta-placeholder {
+        width: 70%;
+    }
+
+    .cta-placeholder h1 {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    main {
+        justify-content: flex-start;
+    }
+
+    main > div {
+        width: 100%;
+    }
+
+    .signup-heading, .display-heading {
+        margin-top: 1rem;
+    }
+
+    
+    .main-container {
+        flex-direction: column;
+        align-items: center;
+        background-color: unset;
+    }
+
+    .main-container.display-visible {
+        background-color: unset;
+    }
+    
+    .signup-container, .display-container {
+        width: 90%;
+        min-height: 85vh;
+        padding: 2rem;
+    }
+
+    .signup-container button {
+        margin-top: auto;
+    }
+    
+    .signup-container.display-visible {
+        display: none;
+    }
+
+    .cta-placeholder {
+        display: none;
+    }
+}
+
